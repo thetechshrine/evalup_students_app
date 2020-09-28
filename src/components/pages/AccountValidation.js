@@ -33,7 +33,7 @@ function AccountValidation() {
             </FormLabel>
             <Input type='password' name='password' variant='filled' placeholder='' />
           </FormControl>
-          <Button mt={4} variantColor='purple' type='submit'>
+          <Button mt={4} colorScheme='purple' type='submit'>
             Enregistrer
           </Button>
         </Stack>

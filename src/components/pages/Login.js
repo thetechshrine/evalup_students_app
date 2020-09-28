@@ -71,7 +71,7 @@ function Login() {
             <FormErrorMessage>{errors.password && errors.password.message}</FormErrorMessage>
           </FormControl>
 
-          <Button mt={4} type='submit' variantColor='purple'>
+          <Button mt={4} type='submit' colorScheme='purple'>
             Accéder à mon espace
           </Button>
 

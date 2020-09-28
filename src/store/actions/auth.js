@@ -49,8 +49,10 @@ function getUserProfile() {
   };
 }
 
-function logout() {
+function logout({ history } = {}) {
   storage.deleteAll();
+
+  history.push('/');
 
   return { type: LOGOUT };
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Scale,
+  Fade,
+  ScaleFade,
   AlertDialog,
   AlertDialogOverlay,
   AlertDialogHeader,
@@ -21,26 +22,31 @@ function Dialog({ shown = false, onClose, onSuccess, title, message }) {
   }
 
   return (
-    <Scale in={shown}>
+    <Fade timeout={300} in={shown}>
       {(styles) => (
-        <AlertDialog blockScrollOnMount={false} leastDestructiveRef={cancelButtonRef} onClose={onClose} isOpen={true}>
-          <AlertDialogOverlay opacity={styles.opacity} />
-          <AlertDialogContent {...styles}>
-            <AlertDialogHeader>{title}</AlertDialogHeader>
-            <AlertDialogCloseButton />
-            <AlertDialogBody>{message}</AlertDialogBody>
-            <AlertDialogFooter>
-              <Button ref={cancelButtonRef} onClick={onClose}>
-                Annuler
-              </Button>
-              <Button variantColor='blue' ml={3} onClick={handleSuccess}>
-                Confirmer
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
+        <AlertDialog leastDestructiveRef={cancelButtonRef} onClose={onClose} isOpen={true}>
+          <AlertDialogOverlay style={styles}>
+            <ScaleFade timeout={150} in={shown} unmountOnExit={false}>
+              {(styles) => (
+                <AlertDialogContent {...styles}>
+                  <AlertDialogHeader>{title}</AlertDialogHeader>
+                  <AlertDialogCloseButton />
+                  <AlertDialogBody>{message}</AlertDialogBody>
+                  <AlertDialogFooter>
+                    <Button ref={cancelButtonRef} onClick={onClose}>
+                      Annuler
+                    </Button>
+                    <Button colorScheme='blue' ml={3} onClick={handleSuccess}>
+                      Confirmer
+                    </Button>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              )}
+            </ScaleFade>
+          </AlertDialogOverlay>
         </AlertDialog>
       )}
-    </Scale>
+    </Fade>
   );
 }
 
