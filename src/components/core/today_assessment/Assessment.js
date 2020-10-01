@@ -64,7 +64,7 @@ function Assessment({ assessment, onOpenSubject }) {
           label='Attention! Si vous avez un gestionnaire de téléchargement actif, cette action téléchargera le fichier'
           aria-label='A tooltip'
         >
-          <Button colorScheme='purple' leftIcon={<ViewIcon />} onClick={onOpenSubject}>
+          <Button variant='outline' colorScheme='purple' leftIcon={<ViewIcon />} onClick={onOpenSubject}>
             Voir le sujet
           </Button>
         </Tooltip>

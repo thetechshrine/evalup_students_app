@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { Box, Flex, Menu, MenuButton, MenuGroup, MenuList, Button, Stack, Avatar, Text } from '@chakra-ui/core';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { BiLogOut } from 'react-icons/bi';
-import { MdAccountCircle } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 
 import dimens from '../../config/dimens';
@@ -62,7 +61,6 @@ function Navbar() {
           </MenuButton>
           <MenuList placement='bottom-end'>
             <MenuGroup title='Profil'>
-              <NavbarAction icon={MdAccountCircle} title='Mon compte' />
               <NavbarAction icon={BiLogOut} title='Déconnexion' onClick={handleLogout} />
             </MenuGroup>
           </MenuList>

@@ -15,6 +15,11 @@ function getIconColor(assessmentResult) {
   return '#38A169';
 }
 
+function isPending(assessmentResult) {
+  const { statuses } = assessmentResultEnums;
+  return [statuses.CREATED, statuses.NOTED].includes(assessmentResult.status);
+}
+
 function getStatusBadgeColorScheme(assessmentResult) {
   const { statuses } = assessmentResultEnums;
   if ([statuses.CREATED, statuses.NOTED].includes(assessmentResult.status)) return 'gray';
@@ -48,7 +53,7 @@ function getObtainedCreditsLabel(assessmentResult) {
 }
 
 function AssessmentResult({ assessmentResult, onOpenReport }) {
-  function handleOpenSubject() {
+  function handleOpenReport() {
     onOpenReport({ url: entitiesUtils.getPrimaryAssetUrl(assessmentResult) });
   }
 
@@ -72,7 +77,7 @@ function AssessmentResult({ assessmentResult, onOpenReport }) {
               <Text color='gray.500'>à</Text>
               <Text fontWeight='medium'>{new Date(assessmentResult.createdAt).toLocaleTimeString()}</Text>
             </Stack>
-            {assessmentResult.comments && (
+            {!isPending(assessmentResult) && assessmentResult.comments && (
               <Stack pt={2}>
                 <Text fontWeight='medium' color='gray.500' fontSize='1.05rem'>
                   Commentaires
@@ -114,7 +119,7 @@ function AssessmentResult({ assessmentResult, onOpenReport }) {
             label='Attention! Si vous avez un gestionnaire de téléchargement actif, cette action téléchargera le fichier'
             aria-label='A tooltip'
           >
-            <Button leftIcon={<ViewIcon />} onClick={handleOpenSubject}>
+            <Button variant='outline' leftIcon={<ViewIcon />} onClick={handleOpenReport}>
               Voir le rapport
             </Button>
           </Tooltip>
