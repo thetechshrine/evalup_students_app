@@ -4,11 +4,12 @@ import { Box, Flex, Menu, MenuButton, MenuGroup, MenuList, Button, Stack, Avatar
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { BiLogOut } from 'react-icons/bi';
 import { MdAccountCircle } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import dimens from '../../config/dimens';
 import dialogsActions from '../../store/actions/ui/dialogs';
 import authActions from '../../store/actions/auth';
+import entitiesUtils from '../../utils/entities-utils';
 
 import Logo from '../helpers/Logo';
 import NavbarAction from './navbar_actions/NavbarAction';
@@ -16,6 +17,7 @@ import NavbarAction from './navbar_actions/NavbarAction';
 function Navbar() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { user } = useSelector((state) => state.auth);
 
   function handleLogout() {
     dispatch(
@@ -45,8 +47,17 @@ function Navbar() {
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
             <Stack direction='row' spacing={2} alignItems='center'>
-              <Avatar size='sm' rounded='full' src='https://placekitten.com/100/100' alt='Fluffybuns the destroyer' />
-              <Text>User</Text>
+              {user && (
+                <>
+                  <Avatar
+                    size='sm'
+                    rounded='full'
+                    name={entitiesUtils.getFullName(user)}
+                    alt='Fluffybuns the destroyer'
+                  />
+                  <Text>{user.firstName}</Text>
+                </>
+              )}
             </Stack>
           </MenuButton>
           <MenuList placement='bottom-end'>

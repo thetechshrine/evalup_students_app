@@ -8,6 +8,9 @@ const httpClient = axios.create({
 const contentTypes = Object.freeze({
   JSON: 'application/json'
 });
+const httpResponseCodes = Object.freeze({
+  NOT_FOUND: 404
+});
 
 function getHeaders(contentType = contentTypes.JSON) {
   const headers = { 'Content-Type': contentType };
@@ -26,4 +29,4 @@ function processHttpErrorResponse(error, notification) {
   notification.showErrorNotification(ERROR_NOTIFICATION_TITLE, errorMessage);
 }
 
-export { httpClient, contentTypes, getHeaders, processHttpErrorResponse };
+export { httpClient, contentTypes, getHeaders, processHttpErrorResponse, httpResponseCodes };

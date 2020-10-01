@@ -3,10 +3,11 @@ import { HiUserGroup } from 'react-icons/hi';
 import { ImBook } from 'react-icons/im';
 import { IoIosSchool } from 'react-icons/io';
 import { GiTeacher } from 'react-icons/gi';
+import { MdAssignment } from 'react-icons/md';
 
 export default Object.freeze({
   HOME: RiHome2Fill,
-  TODAY_ASSESSMENT: RiHome2Fill,
+  TODAY_ASSESSMENT: MdAssignment,
   ASSESSMENT_RESULTS: RiFileList3Fill,
   ASSESSMENTS: RiFileList2Fill,
   GROUPS: HiUserGroup,
